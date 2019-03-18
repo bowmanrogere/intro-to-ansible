@@ -1,1 +1,11 @@
-# intro-to-ansible
+# Intro to Ansible
+
+This repository serves as a place to distribute some basic files for the Intro to Ansible presentation.
+
+Ansible is a simple, agentless automation tool that anyone can use. There are two types of "nodes"; control nodes and managed nodes. The control node is the server that Ansible is executed from, and must have Ansible installed. The managed nodes are servers that are set up and configured via the control node.
+
+To simplify setup for this presentation, I have created a `Vagrantfile` that contains two nodes; a control node and a managed node. The control node has Ansible installed, and has this project directory shared to `/home/vagrant/ansible`. This means you can use local tools, such as Atom, Sublime Text, or Visual Studio Code, to work with Ansible, and they will automatically be kept in sync on your control node. The managed node is configured to allow password-based ssh connections. Typically, you should set up ssh connections between an Ansible control node and a managed node using ssh keys, but for the purposes of this presentation, we will turn on password prompting in Ansible.
+
+In order to use the Vagrant file, you will need to install Vagrant on your machine. Please consult the Vagrant website to download and install Vagrant (https://www.vagrantup.com/downloads.html). Once installed, in the same directory as the `Vagrantfile`, you can execute `vagrant up` to bring up both the control node and the managed node.
+
+Should you want to install Ansible locally (sorry Windows users, your Windows machine cannot be used as a control node without jumping through some hoops), feel free to hit the Ansible docs and install it (Windows users can check out [this](https://www.jeffgeerling.com/blog/2017/using-ansible-through-windows-10s-subsystem-linux) blog post. YMMV, as I'm not a Windows user, and haven't had time to verify this). With Ansible installed locally, you will not need the control node. You will still need to have a managed node, though. You can either create a virtual machine yourself (the examples are based off a managed node with centos7), or you can still use the managed node in the `Vagrantfile`. You can bring up just the managed node by executing `vagrant up managedNode`.
