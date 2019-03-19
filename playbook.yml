@@ -6,14 +6,18 @@
         name: httpd
         state: installed
       become: yes
+      notify: "Restart web services"
     - name: Copy index.html
       copy:
         src: index.html
         dest: /var/www/html/
       become: yes
+
+  handlers:
     - name: Restart httpd
       service:
         name: httpd
         enabled: yes
         state: restarted
       become: yes
+      listen: "Restart web services"
