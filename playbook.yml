@@ -1,3 +1,4 @@
+---
 - hosts: servers
   tasks:
     - name: Install httpd
