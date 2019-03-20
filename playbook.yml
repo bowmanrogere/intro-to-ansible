@@ -4,7 +4,7 @@
     - name: Install httpd
       yum:
         name: httpd
-        state: installed
+        state: latest
       become: yes
       notify: "Restart web services"
     - name: Copy index.html
@@ -14,6 +14,9 @@
       become: yes
 
   handlers:
+    # This task does 2 things; it enables the httpd service so that when the server is rebooted, 
+    # httpd will start up, and it restarts the httpd service. Modify this task so that it only 
+    # restarts the service, and create a task above to ensure that the httpd service is enabled.
     - name: Restart httpd
       service:
         name: httpd
