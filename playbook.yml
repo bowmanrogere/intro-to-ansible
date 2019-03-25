@@ -1,19 +1,20 @@
 ---
 - hosts: servers
   tasks:
+    # Refactor this task to install the httpd package using a variable named `yum_package`
     - name: Install httpd
       yum:
         name: httpd
         state: latest
       become: yes
       notify: "Restart web services"
+
+    # Refactor this task to copy index.html to a destination defined by the variable `deploy_path`
     - name: Copy index.html
       copy:
         src: index.html
         dest: /var/www/html/
       become: yes
-    # this task only ensures that the httpd service is enabled, and does not
-    # start/stop/restart the service.
     - name: Enable httpd service
       service:
         name: httpd
@@ -21,8 +22,6 @@
       become: yes
 
   handlers:
-    # This handler now only restarts the service when it is notified, and is
-    # not relied upon to make sure the service is enabled.
     - name: Restart httpd
       service:
         name: httpd
