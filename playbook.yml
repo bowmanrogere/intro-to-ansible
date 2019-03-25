@@ -9,7 +9,9 @@
       with_items: "{{ yum_packages }}"
       notify: "Restart web services"
 
-    ## Add a template task here that copies httpd.conf.j2 to /etc/httpd/conf/httpd.conf
+    ## Add a template task here that copies httpd.conf.j2 to /etc/httpd/conf/httpd.conf and
+    ## notifies "Restart web services". Since you need root privileges to overwrite this file,
+    ## don't forget to escalate privileges by using the `become` clause.
     ## Create a variable called `http_port` in your extra variables file and set the value
     ## to anything other than 80.Update httpd.conf.j2, line 47, to reference `http_port`.
     ## When you are done, run your playbook. If you have completed this exercise successfully,
