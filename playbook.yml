@@ -1,13 +1,18 @@
 ---
 - hosts: servers
+  vars:
+    yum_package:
+      name: httpd
+      state: latest
+    deploy_path: /var/www/html
   tasks:
     # Refactor this task to install the httpd package using a variable named `yum_package`. This
     # variable should be a dictionary that holds the value for the package name (value should be httpd)
     # and the package state (should be latest)
     - name: Install httpd
       yum:
-        name: httpd
-        state: latest
+        name: "{{ yum_package.name }}"
+        state: "{{ yum_package.state }}"
       become: yes
       notify: "Restart web services"
 
@@ -15,7 +20,7 @@
     - name: Copy index.html
       copy:
         src: index.html
-        dest: /var/www/html/
+        dest: "{{ deploy_path }}"
       become: yes
     - name: Enable httpd service
       service:
