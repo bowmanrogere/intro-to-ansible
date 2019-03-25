@@ -1,7 +1,9 @@
 ---
 - hosts: servers
   tasks:
-    # Refactor this task to install the httpd package using a variable named `yum_package`
+    # Refactor this task to install the httpd package using a variable named `yum_package`. This
+    # variable should be a dictionary that holds the value for the package name (value should be httpd)
+    # and the package state (should be latest)
     - name: Install httpd
       yum:
         name: httpd
