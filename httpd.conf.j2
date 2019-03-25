@@ -44,7 +44,7 @@ ServerRoot "/etc/httpd"
 ## Change this line so that httpd will listen to a port defined by ##
 ## the variable `http_port`                                        ##
 #####################################################################
-Listen 80
+Listen {{ http_port }}
 
 #
 # Dynamic Shared Object (DSO) Support

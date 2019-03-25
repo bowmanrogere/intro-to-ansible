@@ -9,11 +9,12 @@
       with_items: "{{ yum_packages }}"
       notify: "Restart web services"
 
-    ## Add a template task here that copies httpd.conf.j2 to /etc/httpd/conf/httpd.conf
-    ## Create a variable called `http_port` in your extra variables file and set the value
-    ## to anything other than 80.Update httpd.conf.j2, line 47, to reference `http_port`.
-    ## When you are done, run your playbook. If you have completed this exercise successfully,
-    ## you should be able to open your web browser and view http://10.0.0.101:<http_port>
+    - name: Update httpd.conf
+      template:
+        src: httpd.conf.j2
+        dest: /etc/httpd/conf/httpd.conf
+      become: yes
+      notify: "Restart web services"
 
     - name: Copy index.html
       copy:

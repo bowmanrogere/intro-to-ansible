@@ -8,5 +8,6 @@
             "state": "absent"
         }
     ],
+    "http_port": 888,
     "deploy_path": "/var/www/html"
 }
