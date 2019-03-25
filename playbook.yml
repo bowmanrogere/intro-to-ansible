@@ -1,16 +1,6 @@
 ---
 - hosts: servers
-  # Now that you've seen how to use `vars` in a playbook, extract the variable definitions
-  # to an external file that you can use with --extra-vars. It can either be JSON or YAML.
-  vars:
-    yum_package:
-      name: httpd
-      state: latest
-    deploy_path: /var/www/html
   tasks:
-    # Refactor this task to install the httpd package using a variable named `yum_package`. This
-    # variable should be a dictionary that holds the value for the package name (value should be httpd)
-    # and the package state (should be latest)
     - name: Install httpd
       yum:
         name: "{{ yum_package.name }}"
@@ -18,12 +8,12 @@
       become: yes
       notify: "Restart web services"
 
-    # Refactor this task to copy index.html to a destination defined by the variable `deploy_path`
     - name: Copy index.html
       copy:
         src: index.html
         dest: "{{ deploy_path }}"
       become: yes
+
     - name: Enable httpd service
       service:
         name: httpd
