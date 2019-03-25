@@ -1,5 +1,7 @@
 ---
 - hosts: servers
+  # Now that you've seen how to use `vars` in a playbook, extract the variable definitions
+  # to an external file that you can use with --extra-vars. It can either be JSON or YAML.
   vars:
     yum_package:
       name: httpd
