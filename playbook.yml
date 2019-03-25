@@ -7,9 +7,10 @@
     # in your extra variables file you created in an earlier exercise.
     - name: Install httpd
       yum:
-        name: "{{ yum_package.name }}"
-        state: "{{ yum_package.state }}"
+        name: "{{ item.name }}"
+        state: "{{ item.state }}"
       become: yes
+      with_items: "{{ yum_packages }}"
       notify: "Restart web services"
 
     - name: Copy index.html

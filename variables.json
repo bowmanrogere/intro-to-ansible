@@ -1,7 +1,12 @@
 {
-    "yum_package": {
-        "name": "httpd",
-        "state": "latest"
-    },
+    "yum_packages": [
+        {
+            "name": "httpd",
+            "state": "latest"
+        },{
+            "name": "firewalld",
+            "state": "absent"
+        }
+    ],
     "deploy_path": "/var/www/html"
 }
