@@ -1,6 +1,10 @@
 ---
 - hosts: servers
   tasks:
+    # Modify this task to loop over a variable called `yum_packages`. Each item in `yum_packages` should
+    # include the name of the package and the state of the package. Add two items to the `yum_packages`
+    # list to ensure that httpd is installed and firewalld is absent from the server. Define `yum_packages`
+    # in your extra variables file you created in an earlier exercise.
     - name: Install httpd
       yum:
         name: "{{ yum_package.name }}"
